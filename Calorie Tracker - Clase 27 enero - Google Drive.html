@@ -1,0 +1,40 @@
+<article>
+  <h2>Timeline</h2>
+  <ul>
+    <li>[00:02] Deciden seguir usando Tailwind pero en un proyecto con Bit.</li>
+    <li>[00:17] Crean un proyecto React con Bit usando npm create bit@latest.</li>
+    <li>[01:02] Añaden Tailwind según la documentación y modifican la configuración de Bit.</li>
+    <li>[01:22] Eliminan public/assets y simplifican la app dejando solo main.</li>
+    <li>[03:03] Deciden usar una librería externa de componentes además de Tailwind.</li>
+    <li>[07:35] Prueban varias librerías de componentes; algunas requieren TypeScript.</li>
+    <li>[11:48] Instalan Material UI (Material‑UI v7) y dependencias de estilos y iconos.</li>
+    <li>[13:53] Crean el componente funcional CalorieTracker y usan useState para datos.</li>
+    <li>[16:05] Usan reduce para sumar todas las calorías de las entradas.</li>
+    <li>[21:31] Explican la prop sx de Material UI para estilos inline con objeto JS.</li>
+    <li>[29:57] Renderizan entries con entries.map((entry, i) => ...) usando i como key.</li>
+    <li>[39:13] Añaden useEffect para cargar y guardar datos en localStorage.</li>
+  </ul>
+
+  <h2>Hard knowledge</h2>
+  <ul>
+    <li>Comando recomendado para iniciar proyecto con Bit: npm create bit@latest.</li>
+    <li>Añadir Tailwind siguiendo la documentación y registrar Tailwind en la configuración de Bit.</li>
+    <li>Eliminar public/assets y simplificar App si se prefiere trabajar desde la nube.</li>
+    <li>useState: guardar estados food, calories y entries en el componente.</li>
+    <li>OnChange de un input: setFood(e.target.value) o setCalories(e.target.value).</li>
+    <li>Convertir string a número antes de sumar: Number(calories) (mencionado como "Number").</li>
+    <li>Suma total con reduce: entries.reduce((acc, entry) => acc + entry.foodCalories, 0).</li>
+    <li>Mapear entradas para renderizar lista: entries.map((entry, i) => /* JSX */) y usar key={i}.</li>
+    <li>Material UI: usar componentes Card, CardContent, Button, TextField, Typography, Box.</li>
+    <li>Material UI: la prop sx acepta un objeto JS para estilos inline (reemplaza style).</li>
+    <li>TextField props útiles: label, variant outline (outline), value, onChange, fullWidth.</li>
+    <li>Constantes fijas en mayúsculas por convención (por ejemplo DESAYUNO, COMIDA, CENA, DAILY_GOAL = 2000).</li>
+    <li>useEffect para cargar localStorage al montar: usar array de dependencias [] para ejecución una sola vez.</li>
+    <li>Cargar desde localStorage: const saved = localStorage.getItem('caloryEntries'); if (saved) setEntries(JSON.parse(saved)).</li>
+    <li>Guardar en localStorage al cambiar entries: useEffect(() => { localStorage.setItem('caloryEntries', JSON.stringify(entries)); }, [entries]).</li>
+    <li>localStorage solo guarda strings; usar JSON.stringify y JSON.parse para convertir objetos.</li>
+  </ul>
+
+  <h2>Summary</h2>
+  <p>Se creó un proyecto React con Bit y se integró Tailwind, optando finalmente por usar Material UI para los componentes visuales. Construyeron un componente CalorieTracker que usa useState para food, calories y entries; entries.map renderiza la lista y reduce suma las calorías. Implementaron onChange con e.target.value y convierten strings a números antes de sumar. Finalmente añadieron useEffect para cargar y guardar entries en localStorage (JSON.parse al cargar y JSON.stringify al guardar).</p>
+</article>

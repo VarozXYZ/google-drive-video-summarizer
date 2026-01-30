@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "Drive Video Summarizer",
+  "version": "0.1.0",
+  "description": "Capture Google Drive captions and generate AI summaries.",
+  "permissions": ["storage", "activeTab", "downloads", "tabs", "webRequest"],
+  "host_permissions": [
+    "https://drive.google.com/*",
+    "https://*.google.com/*",
+    "https://*.googlevideo.com/*",
+    "https://*.googleusercontent.com/*",
+    "https://*.youtube.com/*",
+    "https://api.openai.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Summarize Drive Video",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://drive.google.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Drive Video Summarizer</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="header">
+        <div>
+          <div class="title">Drive Video Summarizer</div>
+          <div class="subtitle">Capture captions and generate a timeline + hard knowledge summary.</div>
+        </div>
+        <div class="status">
+          <span id="statusDot" class="status-dot"></span>
+          <span id="statusText">Checking...</span>
+        </div>
+      </header>
+
+      <div id="statusHint" class="status-hint"></div>
+
+      <section class="panel">
+        <label class="label" for="apiKey">OpenAI API key (session only)</label>
+        <input id="apiKey" class="input" type="password" placeholder="sk-..." />
+        <div class="row gap">
+          <button id="saveKey" class="ghost">Save for session</button>
+          <button id="clearKey" class="ghost">Clear</button>
+        </div>
+        <div class="note">
+          Stored only for this browser session. Do not ship an API key in a public extension.
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="grid">
+          <div>
+            <label class="label" for="model">Model</label>
+            <select id="model" class="input">
+              <option value="gpt-5-mini">gpt-5-mini</option>
+              <option value="gpt-5">gpt-5</option>
+              <option value="gpt-5-nano">gpt-5-nano</option>
+              <option value="gpt-4.1-mini">gpt-4.1-mini</option>
+              <option value="gpt-4.1">gpt-4.1</option>
+            </select>
+          </div>
+          <div>
+            <label class="label" for="format">Output format</label>
+            <select id="format" class="input">
+              <option value="md">Markdown (.md)</option>
+              <option value="html">HTML (.html)</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <label class="checkbox">
+            <input id="includeTimestamps" type="checkbox" checked />
+            Include timestamps
+          </label>
+          <label class="checkbox">
+            <input id="openInTab" type="checkbox" checked />
+            Open in new tab
+          </label>
+          <label class="checkbox">
+            <input id="downloadFile" type="checkbox" checked />
+            Download file
+          </label>
+        </div>
+      </section>
+
+      <section class="panel">
+        <label class="label" for="extraFiles">Extra context files (optional)</label>
+        <input id="extraFiles" class="input" type="file" multiple />
+        <div class="note">
+          Attach notes, slides, or code snippets mentioned in the video.
+        </div>
+      </section>
+
+      <section class="panel">
+        <button id="summarize" class="primary">Summarize this video</button>
+        <div id="progress" class="progress"></div>
+        <pre id="output" class="output"></pre>
+      </section>
+
+      <section class="panel">
+        <div class="row gap">
+          <button id="refreshDebug" class="ghost">Refresh debug</button>
+          <button id="clearDebug" class="ghost">Clear debug</button>
+        </div>
+        <div class="note">Debug: recent events and captured captions URLs.</div>
+        <pre id="debugLog" class="output"></pre>
+      </section>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
