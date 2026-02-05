@@ -1,0 +1,27 @@
+@import "tailwindcss";
+@import "flowbite-react/plugin/tailwindcss";
+@source "../.flowbite-react/class-list.json";
+
+:root {
+  --background: #fbf6ef;
+  --foreground: #1c1b16;
+  --surface: #fffaf4;
+  --surface-alt: #f2e8dc;
+  --accent: #f97316;
+  --accent-strong: #ea580c;
+  --ink-muted: #5a5246;
+  --ring: rgba(15, 118, 110, 0.28);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+}
+
+body {
+  background: radial-gradient(circle at top left, #fff2dc 0%, var(--background) 55%, #f2e8dc 100%);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+}
