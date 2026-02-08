@@ -1,0 +1,103 @@
+﻿{
+  "Course": {
+    "id": "course_abc",
+    "name": "Intro to Data Structures",
+    "classroom_id": "classroom_123",
+    "drive_folder_id": "drive_folder_456"
+  },
+  "ClassSession": {
+    "id": "sess_123",
+    "course_id": "course_abc",
+    "title": "Week 3: Arrays",
+    "teacher": "Dr. Lee",
+    "start_time": "2026-02-06T15:00:00Z",
+    "end_time": "2026-02-06T16:15:00Z",
+    "video_id": "vid_789",
+    "materials": ["mat_1", "mat_2"]
+  },
+  "Video": {
+    "id": "vid_789",
+    "drive_file_id": "gdrive_file_id",
+    "duration_sec": 4540,
+    "transcript_id": "tr_456"
+  },
+  "Transcript": {
+    "id": "tr_456",
+    "language": "en",
+    "segments": ["seg_001", "seg_002"]
+  },
+  "TranscriptSegment": {
+    "id": "seg_001",
+    "transcript_id": "tr_456",
+    "start_sec": 120,
+    "end_sec": 165,
+    "text": "Short text excerpt"
+  },
+  "Material": {
+    "id": "mat_1",
+    "drive_file_id": "gdrive_file_id",
+    "type": "pdf",
+    "title": "Week 3 Slides",
+    "extracted_text_id": "txt_222"
+  },
+  "SourceRef": {
+    "id": "src_001",
+    "type": "video",
+    "video_id": "vid_789",
+    "material_id": null,
+    "start_sec": 120,
+    "end_sec": 165,
+    "excerpt": "Short snippet used for evidence"
+  },
+  "ClassRecap": {
+    "id": "recap_001",
+    "session_id": "sess_123",
+    "generated_at": "2026-02-06T17:00:00Z",
+    "confidence": 0.86,
+    "sections": ["sec_1", "sec_2"],
+    "glossary": ["gloss_1"],
+    "exercises": ["ex_1"],
+    "exam_focus": ["focus_1"],
+    "gaps": ["gap_1"]
+  },
+  "RecapSection": {
+    "id": "sec_1",
+    "title": "What Was Taught",
+    "content_md": "Short section content",
+    "source_refs": ["src_001", "src_002"]
+  },
+  "GlossaryItem": {
+    "id": "gloss_1",
+    "term": "Array",
+    "definition": "Definition text",
+    "source_refs": ["src_010"]
+  },
+  "ExerciseSolution": {
+    "id": "ex_1",
+    "prompt": "Implement binary search",
+    "solution_md": "Short solution outline",
+    "source_refs": ["src_020"]
+  },
+  "ExamFocusItem": {
+    "id": "focus_1",
+    "summary": "Teacher emphasized Big-O for arrays",
+    "importance": "high",
+    "source_refs": ["src_030"]
+  },
+  "Gap": {
+    "id": "gap_1",
+    "summary": "Assignment file missing",
+    "impact": "med"
+  },
+  "ExamPack": {
+    "id": "exam_001",
+    "course_id": "course_abc",
+    "session_ids": ["sess_123", "sess_124"],
+    "recap_ids": ["recap_001", "recap_002"],
+    "materials": ["mat_1", "mat_2", "mat_3"],
+    "generated_at": "2026-02-07T12:00:00Z",
+    "sections": ["exam_sec_1", "exam_sec_2"],
+    "confidence": 0.82,
+    "gaps": ["gap_9"]
+  }
+}

@@ -1,16 +1,29 @@
 @import "tailwindcss";
-@import "flowbite-react/plugin/tailwindcss";
-@source "../.flowbite-react/class-list.json";
+@import "@heroui/styles";
 
-:root {
-  --background: #fbf6ef;
-  --foreground: #1c1b16;
-  --surface: #fffaf4;
-  --surface-alt: #f2e8dc;
-  --accent: #f97316;
-  --accent-strong: #ea580c;
-  --ink-muted: #5a5246;
-  --ring: rgba(15, 118, 110, 0.28);
+:root,
+[data-theme="light"] {
+  --background: #f8f9fa;
+  --foreground: #202124;
+  --surface: #ffffff;
+  --surface-alt: #f1f3f4;
+  --accent: #1a73e8;
+  --accent-strong: #185abc;
+  --accent-green: #34a853;
+  --accent-yellow: #fbbc04;
+  --accent-red: #ea4335;
+  --ink-muted: #5f6368;
+  --border: #dadce0;
+  --ring: rgba(26, 115, 232, 0.3);
+  --accent-foreground: #ffffff;
+  --accent-soft: #e8f0fe;
+  --accent-soft-foreground: #1a73e8;
+  --success: #34a853;
+  --success-foreground: #ffffff;
+  --warning: #fbbc04;
+  --warning-foreground: #202124;
+  --danger: #ea4335;
+  --danger-foreground: #ffffff;
 }
 
 @theme inline {
@@ -21,7 +34,57 @@
 }
 
 body {
-  background: radial-gradient(circle at top left, #fff2dc 0%, var(--background) 55%, #f2e8dc 100%);
+  background: radial-gradient(
+      circle at top left,
+      #ffffff 0%,
+      var(--background) 55%,
+      #eef3fe 100%
+    ),
+    linear-gradient(120deg, rgba(26, 115, 232, 0.08), transparent 45%),
+    linear-gradient(300deg, rgba(52, 168, 83, 0.08), transparent 55%);
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+}
+
+@layer components {
+  .app-shell {
+    @apply min-h-screen bg-transparent;
+  }
+
+  .app-card {
+    @apply rounded-[24px] border border-[color:var(--border)] bg-[color:var(--surface)] shadow-[0_24px_60px_-40px_rgba(32,33,36,0.35)];
+  }
+
+  .app-kicker {
+    @apply text-[11px] font-semibold uppercase tracking-[0.28em] text-[color:var(--accent)];
+  }
+
+  .app-title {
+    @apply font-[var(--font-display)] text-3xl text-[color:var(--foreground)];
+  }
+
+  .app-muted {
+    @apply text-sm text-[color:var(--ink-muted)];
+  }
+
+  .app-glass {
+    @apply rounded-[22px] border border-[color:var(--border)] bg-white/70 backdrop-blur;
+    box-shadow: 0 20px 40px -30px rgba(32, 33, 36, 0.4);
+  }
+
+  .app-badge {
+    @apply rounded-full border border-[color:var(--border)] bg-[color:var(--surface-alt)] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-[color:var(--accent)];
+  }
+
+  .app-pill {
+    @apply rounded-full border border-[color:var(--border)] bg-white px-4 py-2 text-xs text-[color:var(--ink-muted)];
+  }
+
+  .app-link-primary {
+    @apply inline-flex items-center justify-center rounded-full bg-[color:var(--accent)] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[color:var(--accent-strong)] hover:shadow-[0_12px_30px_-18px_rgba(26,115,232,0.45)];
+  }
+
+  .app-link-outline {
+    @apply inline-flex items-center justify-center rounded-full border border-[color:var(--border)] bg-white px-5 py-2 text-sm font-semibold text-[color:var(--foreground)] transition hover:border-[color:var(--accent)] hover:text-[color:var(--accent)];
+  }
 }

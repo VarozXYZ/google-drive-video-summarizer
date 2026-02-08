@@ -4,8 +4,19 @@ create table if not exists public.subjects (
   id uuid primary key default gen_random_uuid(),
   user_id uuid not null references auth.users(id) on delete cascade,
   name text not null,
+  classroom_id text,
+  drive_folder_id text,
   created_at timestamptz not null default now()
 );
+
+alter table public.subjects
+  add column if not exists classroom_id text;
+
+alter table public.subjects
+  add column if not exists drive_folder_id text;
+
+create unique index if not exists subjects_user_classroom_unique
+  on public.subjects(user_id, classroom_id);
 
 create table if not exists public.units (
   id uuid primary key default gen_random_uuid(),
@@ -77,6 +88,19 @@ create table if not exists public.google_connections (
   updated_at timestamptz not null default now()
 );
 
+create table if not exists public.subject_drive_folders (
+  id uuid primary key default gen_random_uuid(),
+  subject_id uuid not null references public.subjects(id) on delete cascade,
+  user_id uuid not null references auth.users(id) on delete cascade,
+  drive_folder_id text not null,
+  label text,
+  source text not null default 'manual',
+  created_at timestamptz not null default now()
+);
+
+create unique index if not exists subject_drive_folder_unique
+  on public.subject_drive_folders(subject_id, drive_folder_id);
+
 create table if not exists public.video_jobs (
   id uuid primary key default gen_random_uuid(),
   video_id uuid not null references public.videos(id) on delete cascade,
@@ -106,6 +130,7 @@ alter table public.file_texts enable row level security;
 alter table public.google_connections enable row level security;
 alter table public.video_jobs enable row level security;
 alter table public.oauth_states enable row level security;
+alter table public.subject_drive_folders enable row level security;
 
 create policy "subjects_select_own" on public.subjects
   for select using (auth.uid() = user_id);
@@ -241,4 +266,16 @@ create policy "oauth_states_update_own" on public.oauth_states
   for update using (auth.uid() = user_id);
 
 create policy "oauth_states_delete_own" on public.oauth_states
+  for delete using (auth.uid() = user_id);
+
+create policy "subject_drive_folders_select_own" on public.subject_drive_folders
+  for select using (auth.uid() = user_id);
+
+create policy "subject_drive_folders_insert_own" on public.subject_drive_folders
+  for insert with check (auth.uid() = user_id);
+
+create policy "subject_drive_folders_update_own" on public.subject_drive_folders
+  for update using (auth.uid() = user_id);
+
+create policy "subject_drive_folders_delete_own" on public.subject_drive_folders
   for delete using (auth.uid() = user_id);
